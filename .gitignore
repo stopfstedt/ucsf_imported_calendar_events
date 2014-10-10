@@ -1,0 +1,7 @@
+*~
+*.swp
+*.patch
+*.diff
+
+.idea/
+
