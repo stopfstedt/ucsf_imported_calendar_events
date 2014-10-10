@@ -32,13 +32,24 @@ function ucsf_imported_calendar_events_views_default_views() {
   $handler->display->display_options['pager']['options']['items_per_page'] = '3';
   $handler->display->display_options['style_plugin'] = 'list';
   $handler->display->display_options['row_plugin'] = 'fields';
+  /* Field: Content: Source URL */
+  $handler->display->display_options['fields']['field_imported_cal_event_src_url']['id'] = 'field_imported_cal_event_src_url';
+  $handler->display->display_options['fields']['field_imported_cal_event_src_url']['table'] = 'field_data_field_imported_cal_event_src_url';
+  $handler->display->display_options['fields']['field_imported_cal_event_src_url']['field'] = 'field_imported_cal_event_src_url';
+  $handler->display->display_options['fields']['field_imported_cal_event_src_url']['label'] = '';
+  $handler->display->display_options['fields']['field_imported_cal_event_src_url']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_imported_cal_event_src_url']['element_label_colon'] = FALSE;
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
   $handler->display->display_options['fields']['title']['field'] = 'title';
   $handler->display->display_options['fields']['title']['label'] = '';
+  $handler->display->display_options['fields']['title']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['title']['alter']['text'] = '<a href="[field_imported_cal_event_src_url]">[title]</a>';
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['title']['link_to_node'] = FALSE;
   /* Field: Content: Date */
   $handler->display->display_options['fields']['field_imported_cal_event_date']['id'] = 'field_imported_cal_event_date';
   $handler->display->display_options['fields']['field_imported_cal_event_date']['table'] = 'field_data_field_imported_cal_event_date';
@@ -136,6 +147,7 @@ function ucsf_imported_calendar_events_views_default_views() {
     t('Sort by'),
     t('Asc'),
     t('Desc'),
+    t('<a href="[field_imported_cal_event_src_url]">[title]</a>'),
     t('Featured Events Block'),
     t('Academic Events Block'),
     t('Academic Events'),
