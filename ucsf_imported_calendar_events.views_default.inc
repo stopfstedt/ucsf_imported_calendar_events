@@ -91,6 +91,42 @@ function ucsf_imported_calendar_events_views_default_views() {
 
   /* Display: Featured Events Block */
   $handler = $view->new_display('block', 'Featured Events Block', 'ucsf_featured_events_block');
+
+  /* Display: Academic Events Block */
+  $handler = $view->new_display('block', 'Academic Events Block', 'ucsf_academic_events_block');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Academic Events';
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['group'] = 1;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'imported_calendar_event' => 'imported_calendar_event',
+  );
+  /* Filter criterion: Content: Has taxonomy term */
+  $handler->display->display_options['filters']['tid']['id'] = 'tid';
+  $handler->display->display_options['filters']['tid']['table'] = 'taxonomy_index';
+  $handler->display->display_options['filters']['tid']['field'] = 'tid';
+  $handler->display->display_options['filters']['tid']['value'] = array(
+    0 => '5',
+  );
+  $handler->display->display_options['filters']['tid']['vocabulary'] = 'imported_calendar_event_source_feed';
+  /* Filter criterion: Start Date */
+  $handler->display->display_options['filters']['field_imported_cal_event_date_value']['id'] = 'field_imported_cal_event_date_value';
+  $handler->display->display_options['filters']['field_imported_cal_event_date_value']['table'] = 'field_data_field_imported_cal_event_date';
+  $handler->display->display_options['filters']['field_imported_cal_event_date_value']['field'] = 'field_imported_cal_event_date_value';
+  $handler->display->display_options['filters']['field_imported_cal_event_date_value']['ui_name'] = 'Start Date';
+  $handler->display->display_options['filters']['field_imported_cal_event_date_value']['operator'] = '>=';
+  $handler->display->display_options['filters']['field_imported_cal_event_date_value']['default_date'] = 'now';
   $translatables['ucsf_imported_calendar_events'] = array(
     t('Master'),
     t('Featured Events'),
@@ -101,6 +137,8 @@ function ucsf_imported_calendar_events_views_default_views() {
     t('Asc'),
     t('Desc'),
     t('Featured Events Block'),
+    t('Academic Events Block'),
+    t('Academic Events'),
   );
   $export['ucsf_imported_calendar_events'] = $view;
 
